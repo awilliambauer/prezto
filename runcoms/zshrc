@@ -11,3 +11,18 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
+
+# If we have a glob this will expand it
+setopt GLOB_COMPLETE
+setopt PUSHD_MINUS
+
+# Be Reasonable!
+setopt NUMERIC_GLOB_SORT
+ 
+# I don't know why I never set this before.
+setopt EXTENDED_GLOB
+
+if [[ -s "$HOME/.aliases" ]]; then
+    source "$HOME/.aliases"
+fi
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
