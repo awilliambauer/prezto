@@ -15,4 +15,4 @@
 } &!
 
 # Print a random, hopefully interesting, adage.
-curl -s "https://en.wikipedia.org/wiki/Wikipedia:Vital_articles/Expanded" | grep --color=never '^<td align="left"><a href="/wiki/Wikipedia:Vital_articles' | sed -r -e 's/.*href="(.*)" title.*/\1/' | sort -R | head -n 1 | sed -r -e 's/^/https:\/\/en.wikipedia.org/' | xargs curl -s | perl -ne 'print if s|<li><img.*[^\(]<a href="/wiki/(.*?)" title.*$|\1|' | sed -r -e 's/" class="mw-redirect//' | sort -R | head -n 1 | sed -e 's/^/https:\/\/en.wikipedia.org\/w\/api.php?action=query\&format=json\&prop=extracts%7Cinfo\&inprop=url\&exintro=1\&explaintext=1\&exsectionformat=plain\&utf8=1\&titles=/' | xargs curl -s | jq -r '.query.pages | .[] | .fullurl, .extract' | xargs -0 printf | fold -s -w 120
+~/wiki-fortune.zsh
